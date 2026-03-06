@@ -40,15 +40,36 @@
     overflow-x: hidden;
   }
 
+  /* ─── MAX WIDTH ─── */
+  body > * { max-width: 100%; }
+
+  section, footer {
+    padding-left: calc((100% - 1460px) / 2 + 5%);
+    padding-right: calc((100% - 1460px) / 2 + 5%);
+  }
+
+  @media (max-width: 1500px) {
+    section, footer { padding-left: 5%; padding-right: 5%; }
+  }
+
   /* ─── NAVBAR ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(10,10,10,0.96);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(20,168,0,0.2);
-    padding: 0 5%;
-    display: flex; align-items: center; justify-content: space-between;
     height: 64px;
+  }
+
+  .nav-inner {
+    max-width: 1460px;
+    margin: 0 auto;
+    padding: 0 5%;
+    height: 64px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 2rem;
   }
 
   .nav-logo {
@@ -63,6 +84,7 @@
 
   .nav-links {
     display: flex; gap: 2rem; list-style: none;
+    justify-content: center;
   }
 
   .nav-links a {
@@ -73,6 +95,8 @@
   }
 
   .nav-links a:hover { color: var(--green); }
+
+  .nav-cta-wrap { display: flex; justify-content: flex-end; }
 
   .nav-cta {
     background: var(--green);
@@ -93,9 +117,13 @@
     min-height: 100vh;
     background: var(--black);
     display: flex; flex-direction: column; justify-content: center;
-    padding: 100px 5% 60px;
+    padding: 100px calc((100% - 1460px) / 2 + 5%) 60px;
     position: relative;
     overflow: hidden;
+  }
+
+  @media (max-width: 1500px) {
+    #hero { padding: 100px 5% 60px; }
   }
 
   #hero::before {
@@ -110,9 +138,9 @@
     background: rgba(20,168,0,0.12);
     border: 1px solid rgba(20,168,0,0.3);
     color: var(--green);
-    padding: 6px 14px;
+    padding: 9px 21px;
     border-radius: 50px;
-    font-size: 0.82rem;
+    font-size: 1.23rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     margin-bottom: 1.5rem;
@@ -913,16 +941,20 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="/" class="nav-logo">FNF <span>School</span></a>
-  <ul class="nav-links">
-    <li><a href="#why">কেন এই কোর্স</a></li>
-    <li><a href="#modules">কারিকুলাম</a></li>
-    <li><a href="#mentor">মেন্টর</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#pricing" class="nav-cta">এনরোল করুন</a></li>
-  </ul>
-  <div class="nav-hamburger" onclick="toggleNav()">
-    <span></span><span></span><span></span>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">FNF <span>School</span></a>
+    <ul class="nav-links">
+      <li><a href="#why">কেন এই কোর্স</a></li>
+      <li><a href="#modules">কারিকুলাম</a></li>
+      <li><a href="#mentor">মেন্টর</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="#pricing" class="nav-cta">এনরোল করুন</a>
+      <div class="nav-hamburger" onclick="toggleNav()" style="margin-left:1rem">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </div>
 </nav>
 
