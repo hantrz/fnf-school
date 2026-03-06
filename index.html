@@ -41,15 +41,19 @@
   }
 
   /* ─── MAX WIDTH ─── */
-  body > * { max-width: 100%; }
-
-  section, footer {
-    padding-left: calc((100% - 1460px) / 2 + 5%);
-    padding-right: calc((100% - 1460px) / 2 + 5%);
+  .site-wrapper {
+    max-width: 1460px;
+    margin: 0 auto;
+    overflow-x: hidden;
   }
 
-  @media (max-width: 1500px) {
-    section, footer { padding-left: 5%; padding-right: 5%; }
+  nav {
+    /* nav is fixed so needs separate max-width handling */
+  }
+
+  section {
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   /* ─── NAVBAR ─── */
@@ -116,15 +120,14 @@
   #hero {
     min-height: 100vh;
     background: var(--black);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 100px calc((100% - 1460px) / 2 + 5%) 60px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 100px 5% 60px;
     position: relative;
     overflow: hidden;
+    text-align: center;
   }
 
-  @media (max-width: 1500px) {
-    #hero { padding: 100px 5% 60px; }
-  }
+
 
   #hero::before {
     content: '';
@@ -146,36 +149,60 @@
     margin-bottom: 1.5rem;
     width: fit-content;
     animation: fadeUp 0.6s ease both;
+    align-self: center;
   }
 
   .hero-badge::before { content: '●'; font-size: 0.6rem; animation: pulse 1.5s infinite; }
 
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
+  .hero-description {
+    max-width: 780px;
+    margin-top: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-description p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .hero-description p strong { font-weight: 700; }
+
   .hero-heading {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-size: clamp(1.4rem, 2.8vw, 2.6rem);
     color: var(--white);
     line-height: 1.2;
-    max-width: 760px;
+    max-width: 100%;
+    white-space: nowrap;
     margin-bottom: 1.2rem;
     animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  @media (max-width: 900px) {
+    .hero-heading { white-space: normal; font-size: clamp(1.5rem, 5vw, 2.2rem); }
   }
 
   .hero-heading .highlight { color: var(--green); }
 
   .hero-sub {
     color: rgba(255,255,255,0.6);
-    font-size: 1.05rem;
-    max-width: 600px;
+    font-size: 1.2rem;
+    max-width: 780px;
     margin-bottom: 2rem;
     animation: fadeUp 0.6s 0.2s ease both;
+    line-height: 1.8;
   }
 
   .hero-sub strong { color: rgba(255,255,255,0.85); }
 
   .hero-cta-row {
-    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;
     animation: fadeUp 0.6s 0.3s ease both;
   }
 
@@ -218,14 +245,15 @@
   }
 
   .hero-stats {
-    display: flex; gap: 2.5rem; flex-wrap: wrap;
+    display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center;
     margin-top: 3rem;
     padding-top: 2.5rem;
     border-top: 1px solid rgba(255,255,255,0.08);
     animation: fadeUp 0.6s 0.4s ease both;
+    width: 100%;
   }
 
-  .stat-item { text-align: left; }
+  .stat-item { text-align: center; }
   .stat-number {
     font-family: var(--font-display);
     font-size: 1.8rem;
@@ -247,7 +275,8 @@
     overflow: hidden;
     border: 1px solid rgba(20,168,0,0.2);
     position: relative;
-    max-width: 680px;
+    max-width: 720px;
+    width: 100%;
     animation: fadeUp 0.6s 0.5s ease both;
   }
 
@@ -264,6 +293,8 @@
     margin-top: 1.2rem;
     color: rgba(255,255,255,0.7);
     font-size: 0.88rem;
+    text-align: center;
+    justify-content: center;
   }
 
   .instructor-tag strong { color: var(--green); }
@@ -938,6 +969,7 @@
 </style>
 </head>
 <body>
+<div class="site-wrapper">
 
 <!-- NAVBAR -->
 <nav>
@@ -961,12 +993,9 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-badge">৩০ দিনের Action-Based Challenge Program</div>
-  <h1 class="hero-heading">
-    আপওয়ার্কের টপ ১% ফ্রিল্যান্সারদের কাতারে<br>
-    <span class="highlight">নিজেকে দেখতে চান?</span>
-  </h1>
+  <h1 class="hero-heading">আপওয়ার্কের টপ ১% ফ্রিল্যান্সারদের কাতারে <span class="highlight">নিজেকে দেখতে চান?</span></h1>
   <p class="hero-sub">
-    <strong>১৫+ বছরের অভিজ্ঞতা সম্পন্ন Upwork Top Rated Plus ফ্রিল্যান্সারের</strong> কাছে সরাসরি লাইভে শিখুন A-Z।
+    <strong>১৫+ বছরের অভিজ্ঞতা সম্পন্ন Upwork Top Rated Plus ফ্রিল্যান্সারের</strong> কাছে সরাসরি লাইভে শিখুন A-Z।<br>
     দেশসেরা মেন্টর, এডভান্স কারিকুলাম এবং বেস্ট সাপোর্ট নিয়ে আমাদের এই চ্যালেঞ্জ প্রোগ্রাম।
   </p>
   <div class="hero-cta-row">
@@ -996,8 +1025,10 @@
   <div class="video-wrap" style="margin-top:2.5rem">
     <iframe src="https://www.youtube.com/embed/jl0s61IRCCA" allowfullscreen title="FNF School - Course Introduction"></iframe>
   </div>
-  <div class="instructor-tag">
-    মেন্টর — <strong>S.M Zahidul Islam</strong> &nbsp;|&nbsp; Upwork Top Rated Plus | Multi Certified Upwork Mentor
+  <div class="hero-description">
+    <p><strong style="color:var(--green); font-size:1.1rem">মাসে লক্ষাধিক টাকা আয়ের স্বপ্ন? আপওয়ার্ক হতে পারে আপনার টার্নিং পয়েন্ট! 🎯</strong></p>
+    <p>বিশ্বজুড়ে ৫ মিলিয়ন ক্লায়েন্ট আর প্রায় ২০ মিলিয়নের বিশাল মার্কেটপ্লেস আপওয়ার্কে আপনার অবস্থান কোথায়? জানেন কি, প্রতি মাসে গড়ে ৩ লাখেরও বেশি নতুন কাজ পোস্ট হচ্ছে এখানে এবং এই সংখ্যা দিন দিন বাড়ছে! বাংলাদেশের ফ্রিল্যান্সাররা এখন গড়ে প্রতি ঘণ্টায় ১৮ ডলার পর্যন্ত আয় করছেন! বিশেষ করে আপনি যদি ওয়েব বা মোবাইল অ্যাপ ডেভেলপমেন্ট, ডিজিটাল মার্কেটিং কিংবা গ্রাফিক ডিজাইনে দক্ষ হন, তবে মাসে লক্ষাধিক টাকা আয় করা এখন আর কোনো স্বপ্ন নয়। তবে মনে রাখবেন, আপওয়ার্কে আপনার আয় পুরোপুরি নির্ভর করে সঠিক স্কিল, অভিজ্ঞতা আর আপনি কাজটা কীভাবে নিচ্ছেন তার ওপর।</p>
+    <p>প্রতিযোগিতাপূর্ণ এই প্ল্যাটফর্মে একা লড়াই করবেন কেন? আমাদের এক্সপার্ট মেন্টরের দীর্ঘদিনের অভিজ্ঞতা আর সার্বক্ষণিক গাইডলাইন আপনার সাথে আছে। সঠিক সাপোর্টের মাধ্যমে নিজের আয় বৃদ্ধি করুন এবং নিজেকে গড়ে তুলুন আপওয়ার্কের একজন সফল <strong style="color:var(--green)">'Top Rated'</strong> ফ্রিল্যান্সার হিসেবে!</p>
   </div>
 </section>
 
@@ -1514,5 +1545,6 @@
     }
   }
 </script>
+</div><!-- end site-wrapper -->
 </body>
 </html>
